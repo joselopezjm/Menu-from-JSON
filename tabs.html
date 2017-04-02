@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+
+    <script>
+        var act = 0;
+        var num = 3;
+        var comp = 3;
+        var consola = document.createElement('div');
+        document.body.appendChild(consola);
+        consola.style.width = '650px';
+        var barra = document.createElement('div');
+        consola.appendChild(barra);
+        barra.style.background = 'linear-gradient(to bottom, rgba(254,254,254,1) 0%,rgba(223,223,223,1) 49%,rgba(230,230,230,1) 50%,rgba(235,235,235,1) 100%)';
+        barra.style.height = '38px';
+        var bord = document.createElement('div');
+        barra.appendChild(bord);
+        bord.style.height = '4px';
+        bord.style.background = 'linear-gradient(to bottom, rgba(249,251,251,1) 0%,rgba(236,241,242,1) 50%,rgba(224,231,234,1) 51%,rgba(247,249,251,1) 100%)';
+        bord.style.borderBottom = 'solid 1px #A4A4A4';
+        bord.style.borderTop = 'solid 1px #BDBDBD';
+        bord.style.position = 'relative';
+        bord.style.top = '38px';
+
+        for (var i = 1; i < 4; i++) {
+            var tab = document.createElement('div');
+            var uppertab = document.createElement('div');
+            var file = document.createElement('div');
+            var input = document.createElement('input');
+            var texto = document.createElement('div');
+            var equis = document.createElement('div');
+            uppertab.appendChild(texto);
+            uppertab.appendChild(equis);
+            barra.appendChild(uppertab);
+            consola.appendChild(tab);
+            tab.appendChild(input);
+            tab.appendChild(file);
+            input.setAttribute('type', 'file');
+            input.setAttribute('id', 'b' + i);
+            input.innerHTML = ('Seleccionar Archivo');
+            input.i = i;
+            input.onclick = function (e) {
+                var f = iniciar(this.i);
+            };
+            input.style.position = 'relative';
+            input.style.left = '50px';
+            input.style.top = '20px';
+            tab.setAttribute('id', 'tab' + i);
+            uppertab.setAttribute('id', 'uptab' + i);
+            file.setAttribute('id', 'file' + i);
+            tab.style.width = '648px';
+            tab.style.height = '500px';
+            tab.style.overflow = 'auto';
+            tab.style.border = 'solid 1px #D8D8D8';
+            uppertab.style.width = '100px';
+            uppertab.style.height = '25px';
+            uppertab.style.border = 'solid 1px #A4A4A4';
+            uppertab.style.boxShadow = '1px -1px 11px 0px rgba(224,220,224,1)';
+            if (i == 1) {
+                act = 1;
+                uppertab.style.position = 'relative';
+                uppertab.style.left = '30px';
+                uppertab.style.top = '6px';
+                tab.style.position = 'relative';
+                tab.style.top = '5px';
+                texto.style.cursor='default';
+                texto.style.fontFamily = 'helvetica';
+                texto.innerHTML = 'Archivo' + i;
+                texto.style.fontSize = '12px';
+                uppertab.setAttribute('align', 'center');
+                uppertab.setAttribute('vertical-align', 'middle');
+                uppertab.style.borderRadius = '12px 12px 0px 0px';
+                texto.style.position = 'absolute';
+                texto.style.top = '4px';
+                texto.style.left = '24px';
+                equis.style.position = 'absolute';
+                equis.style.top = '2px';
+                equis.style.left = '80px';
+                equis.style.fontFamily = 'helvetica';
+                equis.style.cursor='default';
+                var str = 'x';
+                equis.innerHTML = str.bold();
+                equis.style.fontSize = '14px';
+                equis.onclick = function () {
+                    var f = deltab(1);
+                }
+                uppertab.style.background = 'linear-gradient(to bottom, rgba(241,241,241,1) 0%,rgba(241,241,241,1) 100%)';
+                uppertab.onmouseover = function (h) {
+                    var f = tabcolor(1);
+                };
+                uppertab.onclick = function (h) {
+                    var f = activetab(1);
+                };
+
+            }
+            if (i == 2) {
+                var prevtab = document.getElementById('tab' + (i - 1));
+                var prevuptab = document.getElementById('uptab' + (i - 1));
+                var bodyRect = document.body.getBoundingClientRect(),
+                    elemRect = prevtab.getBoundingClientRect();
+                tope = elemRect.top - bodyRect.top;
+                izq = elemRect.left - bodyRect.left;
+                tab.style.position = 'absolute';
+                tab.style.left = izq + 8 + 'px';
+                tab.style.top = tope + 8 + 'px';
+                texto.style.cursor='default';
+                texto.style.fontFamily = 'helvetica';
+                texto.innerHTML = 'Archivo' + i;
+                texto.style.fontSize = '12px';
+                uppertab.setAttribute('align', 'center');
+                uppertab.setAttribute('vertical-align', 'middle');
+                uppertab.style.borderRadius = '12px 12px 0px 0px';
+                texto.style.position = 'absolute';
+                texto.style.top = '4px';
+                texto.style.left = '24px';
+                equis.style.position = 'absolute';
+                equis.style.top = '2px';
+                equis.style.left = '80px';
+                equis.style.fontFamily = 'helvetica';
+                equis.style.cursor='default';
+                equis.onclick = function () {
+                    var f = deltab(2);
+                }
+                var str = 'x';
+                equis.innerHTML = str.bold();
+                equis.style.fontSize = '14px';
+                var bodyRect = document.body.getBoundingClientRect(),
+                    elemRect = prevuptab.getBoundingClientRect();
+                izq = elemRect.left - bodyRect.left;
+
+                uppertab.style.position = 'absolute';
+                uppertab.style.top = elemRect.top + 'px';
+                uppertab.style.left = izq + 110 + 'px';
+                tab.style.visibility = 'hidden';
+                uppertab.style.background = 'linear-gradient(to bottom, rgba(221,221,221,1) 0%,rgba(221,221,221,1) 100%)';
+                uppertab.onmouseover = function (h) {
+                    var f = tabcolor(2);
+                };
+                uppertab.onclick = function (h) {
+                    var f = activetab(2);
+                };
+
+
+            }
+
+            if (i == 3) {
+                var prevtab = document.getElementById('tab' + (i - 1));
+                var prevuptab = document.getElementById('uptab' + (i - 1));
+                var bodyRect = document.body.getBoundingClientRect(),
+                    elemRect = prevtab.getBoundingClientRect();
+                tope = elemRect.top - bodyRect.top;
+                izq = elemRect.left - bodyRect.left;
+                tab.style.position = 'absolute';
+                tab.style.left = izq + 8 + 'px';
+                tab.style.top = tope + 8 + 'px';
+
+                var bodyRect = document.body.getBoundingClientRect(),
+                    elemRect = prevuptab.getBoundingClientRect();
+                izq = elemRect.left - bodyRect.left;
+
+                uppertab.style.position = 'absolute';
+                uppertab.style.top = elemRect.top + 5 + 'px';
+                uppertab.style.left = izq + 114 + 'px';
+                tab.style.visibility = 'hidden';
+                uppertab.style.width = '30px';
+                uppertab.style.height = '15px';
+                uppertab.style.background = 'linear-gradient(to bottom, rgba(221,221,221,1) 0%,rgba(221,221,221,1) 100%)';
+                uppertab.style.borderRadius = '8px 0px 8px 0px';
+                uppertab.i = i;
+                uppertab.onclick = function (h) {
+                    var f = newtab();
+                };
+
+            }
+
+        }
+
+        function deltab(i) {
+            var ultimo = 0;
+            var flag=0;
+            for (var j = i + 1; j <= num; j++) {
+                var uptabb = document.getElementById('uptab' + j);
+                if (uptabb != null) {
+                    posy = uptabb.style.left.replace('px', '') - 102;
+                    uptabb.style.left = posy + 'px';
+                    ultimo = j;
+                }
+            }
+            var anterior = document.getElementById('uptab' + ultimo);
+            console.log(anterior);
+             if (ultimo==3) {
+                posy = anterior.style.left.replace('px', '');
+                posy = parseInt(posy);
+                var uptabb = document.getElementById('uptab' + 3);
+                uptabb.style.left = posy + 4 + 'px';
+                flag=1;
+            } 
+            if (anterior != null) {
+                if(flag==0){
+                posy = anterior.style.left.replace('px', '');
+                posy = parseInt(posy);
+                var uptabb = document.getElementById('uptab' + 3);
+                uptabb.style.left = posy + 106 + 'px';}
+            } else {
+                if(flag==0){
+                var anterior = document.getElementById('uptab' + i);
+                posy = anterior.style.left.replace('px', '');
+                posy = parseInt(posy);
+                var uptabb = document.getElementById('uptab' + 3);
+                uptabb.style.left = posy + 4 + 'px';}
+            }
+            var actuptab = document.getElementById('uptab' + i);
+            var acttab = document.getElementById('tab' + i);
+            barra.removeChild(actuptab);
+            consola.removeChild(acttab);
+            comp -= 1;
+        }
+
+        function newtab() {
+
+
+            if (comp != 6) {
+                num += 1;
+                var tab = document.createElement('div');
+                var uppertab = document.createElement('div');
+                var file = document.createElement('section');
+                var input = document.createElement('input');
+                var texto = document.createElement('div');
+                var equis = document.createElement('div');
+                uppertab.appendChild(texto);
+                uppertab.appendChild(equis);
+                barra.appendChild(uppertab);
+                consola.appendChild(tab);
+                tab.appendChild(input);
+                tab.appendChild(file);
+                input.setAttribute('type', 'file');
+                input.setAttribute('id', 'b' + num);
+                input.innerHTML = ('Seleccionar Archivo');
+                input.num = num;
+                input.onclick = function (e) {
+                    var f = iniciar(this.num);
+                };
+                input.style.position = 'relative';
+                input.style.left = '50px';
+                input.style.top = '20px';
+                tab.setAttribute('id', 'tab' + num);
+                uppertab.setAttribute('id', 'uptab' + num);
+                file.setAttribute('id', 'file' + num);
+                tab.style.width = '648px';
+                tab.style.height = '500px';
+                tab.style.overflow = 'auto';
+                tab.style.border = 'solid 1px #D8D8D8';
+                uppertab.style.width = '100px';
+                uppertab.style.height = '25px';
+                uppertab.style.border = 'solid 1px #A4A4A4';
+                uppertab.style.boxShadow = '1px -1px 11px 0px rgba(224,220,224,1)';
+                texto.style.fontFamily = 'helvetica';
+                texto.innerHTML = 'Archivo' + (num - 1);
+                texto.style.fontSize = '12px';
+                uppertab.setAttribute('align', 'center');
+                uppertab.setAttribute('vertical-align', 'middle');
+                uppertab.style.borderRadius = '12px 12px 0px 0px';
+                texto.style.position = 'absolute';
+                texto.style.top = '4px';
+                texto.style.left = '24px';
+                texto.style.cursor='default';
+                equis.style.position = 'absolute';
+                equis.style.top = '2px';
+                equis.style.left = '80px';
+                equis.style.fontFamily = 'helvetica';
+                equis.style.cursor='default';
+                var str = 'x';
+                equis.innerHTML = str.bold();
+                equis.style.fontSize = '14px';
+                equis.num = num;
+                equis.onclick = function () {
+                    var f = deltab(this.num);
+                }
+
+                uppertab.style.borderRadius = '12px 12px 0px 0px';
+                var prevuptab = document.getElementById('uptab' + 3);
+                var bodyRect = document.body.getBoundingClientRect(),
+                    elemRect = prevuptab.getBoundingClientRect();
+                izq = elemRect.left - bodyRect.left;
+                prevuptab.style.position = 'absolute';
+                prevuptab.style.top = elemRect.top + 'px';
+                prevuptab.style.left = izq + 110 + 'px';
+                uppertab.style.position = 'absolute';
+                uppertab.style.top = elemRect.top - 5 + 'px';
+                uppertab.style.left = izq + 4 + 'px';
+                tab.style.visibility = 'hidden';
+                uppertab.style.background = 'linear-gradient(to bottom, rgba(221,221,221,1) 0%,rgba(221,221,221,1) 100%)';
+                tab.style.position = 'absolute';
+                tab.style.left = '9px';
+                tab.style.top = '48px';
+                uppertab.num = num;
+                uppertab.onmouseover = function (h) {
+                    var f = tabcolor(this.num);
+                };
+                uppertab.onclick = function (h) {
+                    var f = activetab(this.num);
+                };
+                comp += 1;
+            } else {
+                alert('Numero Maximo de tabs alcanzado');
+            }
+
+        }
+
+        function tabcolor(i) {
+            if (i != act) {
+                var tabsel = document.getElementById('uptab' + i);
+                tabsel.style.background = 'linear-gradient(to bottom, rgba(232,232,232,1) 0%,rgba(226,226,226,1) 50%,rgba(218,218,218,1) 51%,rgba(254,254,254,1) 100%)';
+                tabsel.onmouseleave = function () {
+                    tabsel.style.background = 'linear-gradient(to bottom, rgba(221,221,221,1) 0%,rgba(221,221,221,1) 100%)';
+                };
+            }
+        }
+
+        function activetab(i) {
+            var actuptab = document.getElementById('uptab' + i);
+            var acttab = document.getElementById('tab' + i);
+            for (var j = 1; j <= num; j++) {
+                var uptabb = document.getElementById('uptab' + j);
+                var tabb = document.getElementById('tab' + j);
+                if (uptabb != null) {
+                    uptabb.style.background = 'linear-gradient(to bottom, rgba(221,221,221,1) 0%,rgba(221,221,221,1) 100%)';
+                    tabb.style.visibility = 'hidden';
+                }
+            }
+            if (acttab != null) {
+                acttab.style.visibility = 'visible';
+                actuptab.style.background = 'linear-gradient(to bottom, rgba(241,241,241,1) 0%,rgba(241,241,241,1) 100%)';
+                actuptab.onmouseleave = function () {
+                    return null;
+                };
+                act = i;
+            }
+        }
+
+        function iniciar(i) {
+            var archivos = document.getElementById("b" + i);
+            archivos.addEventListener("change", procesar, false);
+            cd = document.getElementById('file' + i);
+
+        }
+
+        function procesar(e) {
+            var archivos = e.target.files;
+            var archivo = archivos[0];
+            var lector = new FileReader();
+            lector.onload = mostrar;
+            if (archivo.type.match(/text.*/)) {
+                lector.readAsText(archivo);
+            } else {
+                cd.style.border = 'solid 1px';
+                cd.style.borderRadius = "2px";
+                cd.style.padding = "7px";
+                cd.style.borderColor = "rgba(221,221,221,1)";
+                cd.style.position = 'absolute';
+                cd.style.marginTop = '30px';
+                cd.style.marginLeft = '50px';
+                cd.style.width='100px';
+                cd.innerHTML = 'Formato no Soportado';
+
+
+            }
+        }
+
+        function mostrar(e) {
+            cd.style.border = 'solid 1px';
+            cd.style.position = 'absolute';
+            cd.style.top = '50px';
+            cd.style.left = '50px';
+            cd.style.width = '550px';
+            var resp = e.target.result;
+            var caracteres = resp;
+            cd.innerHTML = caracteres;
+            var cont = 0;
+        }
+    </script>
+
+</body>
+
+</html>
